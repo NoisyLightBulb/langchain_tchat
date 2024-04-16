@@ -12,7 +12,7 @@ chat = ChatOpenAI()
 
 #initialize chat memory
 memory = ConversationBufferMemory(
-    chat_memory = FileChatMessageHistory("messages.json"),          #storing message history across sessions
+    chat_memory = FileChatMessageHistory("messages.json"),          #storing message history accross sessions
     memory_key = "messages",
     return_messages = True
     )
