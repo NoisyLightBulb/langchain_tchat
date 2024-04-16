@@ -15,8 +15,10 @@ memory = ConversationBufferMemory(memory_key="messages", return_messages=True)
 
 #chat prompt template
 prompt = ChatPromptTemplate(
-    input_variables = ["content"],
-    messages = [HumanMessagePromptTemplate.from_template("{content}")]
+    input_variables = ["content", "messages"],
+    messages = [
+        MessagesPlaceholder(variable_name="messages"),              #chat history
+        HumanMessagePromptTemplate.from_template("{content}")]
 )
 
 
