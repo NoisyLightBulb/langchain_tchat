@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 #import environment variables
 load_dotenv()
 
+#initialize ChatOpenAI
+chat = ChatOpenAI()
+
 #chat prompt template
 prompt = ChatPromptTemplate(
     input_variables = ["content"],
@@ -15,7 +18,16 @@ prompt = ChatPromptTemplate(
 )
 
 
-while True:
+#create chain
+chain = LLMChain(
+    llm = chat,
+    prompt = prompt
+)
+
+content = ""
+while content != "exit":
     content = input(">> ")
 
-    print(f"You entered: {content}")
+    result = chain({"content": content})
+
+    print(result["text"])
